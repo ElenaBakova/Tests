@@ -21,9 +21,15 @@
     <ClCompile Include="Graphc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,6 +38,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Tests.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="TestAnswer.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

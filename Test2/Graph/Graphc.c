@@ -8,6 +8,16 @@ typedef struct Graph
 	int vertices;
 } Graph;
 
+int sizeOfGraph(const Graph* graph)
+{
+	return graph->vertices;
+}
+
+int getValue(const Graph* graph, const int i, const int j)
+{
+	return graph->matrix[i][j];
+}
+
 Graph* makeGraph(const char* filename)
 {
 	Graph* newGraph = calloc(1, sizeof(Graph));
@@ -24,10 +34,6 @@ Graph* makeGraph(const char* filename)
 		for (int j = 0; j < countVertices; j++)
 		{
 			fscanf(input, "%i", &(newGraph->matrix[i][j]));
-			if (newGraph->matrix[i][j] == 0)
-			{
-				newGraph->matrix[i][j] = INT_MAX;
-			}
 		}
 	}
 	newGraph->vertices = countVertices;
@@ -55,13 +61,6 @@ void transitiveClosure(Graph** graph)
 			}
 		}
 	}
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			(*graph)->matrix[i][j] = (*graph)->matrix[i][j] == INT_MAX ? 0 : 1;
-		}
-	}
 }
 
 void printGraph(const Graph* graph, const char* filename)
@@ -79,6 +78,7 @@ void printGraph(const Graph* graph, const char* filename)
 		}
 		fprintf(output, "\n");
 	}
+	fclose(output);
 }
 
 void deleteGraph(Graph** graph)
