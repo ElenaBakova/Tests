@@ -3,7 +3,7 @@
 typedef struct Graph Graph;
 
 // Returns size of graph
-int sizeOfGraph(Graph* graph);
+int sizeOfGraph(const Graph* graph);
 
 // Returns value in [i][j] cell
 int getValue(const Graph* graph, const int i, const int j);
