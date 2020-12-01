@@ -4,17 +4,17 @@
 
 bool compareGraph(Graph* graph)
 {
-	Graph* ansGraph = makeGraph("TestAnswer.txt");
+	Graph* answerGraph = makeGraph("TestAnswer.txt");
 	const int size = sizeOfGraph(graph);
 	bool result = true;
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
 		{
-			result &= getValue(graph, i, j) == getValue(ansGraph, i, j);
+			result &= getValue(graph, i, j) == getValue(answerGraph, i, j);
 		}
 	}
-	deleteGraph(&ansGraph);
+	deleteGraph(&answerGraph);
 	return result;
 }
 

@@ -15,14 +15,24 @@ int sizeOfGraph(const Graph* graph)
 
 int getValue(const Graph* graph, const int i, const int j)
 {
+	if (i > graph->vertices || j > graph->vertices)
+	{
+		return INT_MAX;
+	}
 	return graph->matrix[i][j];
 }
 
 Graph* makeGraph(const char* filename)
 {
-	Graph* newGraph = calloc(1, sizeof(Graph));
 	FILE* input = fopen(filename, "r");
-	if (input == NULL || newGraph == NULL) {
+	if (input == NULL)
+	{
+		return NULL;
+	}
+	Graph* newGraph = calloc(1, sizeof(Graph));
+	if (newGraph == NULL)
+	{
+		fclose(input);
 		return NULL;
 	}
 	int countVertices = 0;
