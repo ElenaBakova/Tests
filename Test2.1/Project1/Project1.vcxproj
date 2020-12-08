@@ -139,17 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileProcessing.c" />
     <ClCompile Include="List.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="TestList.c" />
+    <ClCompile Include="Tests.c" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Answer1.txt" />
     <Text Include="input.txt" />
     <Text Include="output.txt" />
+    <Text Include="Test1.1.txt" />
+    <Text Include="Test1.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileProcessing.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="TestList.h" />
+    <ClInclude Include="Tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

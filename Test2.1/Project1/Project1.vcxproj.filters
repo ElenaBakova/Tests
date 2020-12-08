@@ -24,6 +24,12 @@
     <ClCompile Include="TestList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileProcessing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
@@ -32,12 +38,27 @@
     <Text Include="output.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Test1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Answer1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Test1.1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileProcessing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
