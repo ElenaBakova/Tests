@@ -2,23 +2,39 @@
 #include "Queue.h"
 #include <stdio.h>
 
-typedef struct Graph
-{
+typedef struct Graph {
 	int **matrix;
 	int vertices;
 } Graph;
 
 Graph* makeGraph(const char* filename)
 {
-	Graph* newGraph = calloc(1, sizeof(Graph));
 	FILE* input = fopen(filename, "r");
-	if (input == NULL || newGraph == NULL) {
+	if (input == NULL)
+	{
 		return NULL;
 	}
 	int countVertices = 0;
-	fscanf(input, "%i", &countVertices);
-	newGraph->matrix = calloc(countVertices, sizeof(int*));
+	int countEdges = 0;
+	fscanf(input, "%d%d", &countVertices, &countEdges);
+	int** array = calloc(countEdges, sizeof(int*));
 	for (int i = 0; i < countVertices; i++)
+	{
+		array[i] = calloc(countVertices, sizeof(int));
+		for (int j = 0; j < countVertices; j++)
+		{
+			fscanf(input, "%i", &array[i][j]);
+		}
+	}
+
+	Graph* newGraph = calloc(1, sizeof(Graph));
+	if (newGraph == NULL)
+	{
+		fclose(input);
+		return NULL;
+	}
+	newGraph->matrix = calloc(countVertices, sizeof(int*));
+	for (int i = 0; i < countEdges; i++)
 	{
 		newGraph->matrix[i] = calloc(countVertices, sizeof(int));
 		for (int j = 0; j < countVertices; j++)

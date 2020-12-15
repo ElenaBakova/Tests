@@ -3,6 +3,7 @@
 
 typedef struct Graph Graph;
 
+// Reads graph from 'filename' file. Creates graph
 Graph* makeGraph(const char* filename);
 
 void printGraph(const Graph* graph);
