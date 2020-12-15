@@ -17,7 +17,7 @@ Graph* makeGraph(const char* filename)
 	}
 	int countVertices = 0;
 	int countEdges = 0;
-	fscanf(input, "%d%d", &countVertices, &countEdges);
+	fscanf(input, "%d %d", &countVertices, &countEdges);
 	int** array = calloc(countEdges, sizeof(int*));
 	for (int i = 0; i < countVertices; i++)
 	{
@@ -41,22 +41,22 @@ Graph* makeGraph(const char* filename)
 	}
 	for (int i = 0; i < countEdges; i++)
 	{
-		int first = 0;
-		int second = 0;
+		int first = -1;
+		int second = -1;
 		for (int j = 0; j < countVertices; j++)
 		{
-			if (array[j][i] == 1 && first == 0)
+			if (array[j][i] == 1 && first == -1)
 			{
 				first = j;
 			}
-			else if (array[j][i] == 1 && first == 1)
+			else if (array[j][i] == 1 && first != -1)
 			{
 				newGraph->matrix[j][first] = 1;
 				newGraph->matrix[first][j] = 1;
 				second = j;
 			}
 		}
-		if (first == 1 && second == 0)
+		if (first != 1 && second == -1)
 		{
 			newGraph->matrix[first][first] = 1;
 		}

@@ -69,12 +69,12 @@ void deleteQueue(Queue** queue)
 
 Queue* initQueue(void)
 {
-	Queue* queue = malloc(sizeof(Queue));
+	Queue* queue = calloc(1, sizeof(Queue));
 	if (queue == NULL)
 	{
 		return NULL;
 	}
-	queue->head = NULL;
-	queue->tail = NULL;
+	/*queue->head = calloc(1, sizeof(QueueElement));
+	queue->tail = calloc(1, sizeof(QueueElement));*/
 	return queue;
 }
