@@ -14,7 +14,7 @@ typedef struct Queue
 	struct QueueElement* tail;
 } Queue;
 
-bool empty(Queue* queue)
+bool isEmpty(Queue* queue)
 {
 	return queue->head == NULL || queue->tail == NULL;
 }
@@ -28,7 +28,7 @@ void enqueue(Queue* queue, int value)
 	}
 	newItem->value = value;
 	newItem->next = NULL;
-	if (empty(queue))
+	if (isEmpty(queue))
 	{
 		queue->head = newItem;
 		queue->tail = newItem;
@@ -49,7 +49,7 @@ int dequeue(Queue* queue)
 	int value = queue->head->value;
 	QueueElement* oldHead = queue->head;
 	queue->head = queue->head->next;
-	if (empty(queue))
+	if (isEmpty(queue))
 	{
 		queue->tail = NULL;
 	}
@@ -59,7 +59,7 @@ int dequeue(Queue* queue)
 
 void deleteQueue(Queue** queue)
 {
-	while (!empty(*queue))
+	while (!isEmpty(*queue))
 	{
 		dequeue(*queue);
 	}

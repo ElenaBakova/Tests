@@ -34,12 +34,30 @@ Graph* makeGraph(const char* filename)
 		return NULL;
 	}
 	newGraph->matrix = calloc(countVertices, sizeof(int*));
-	for (int i = 0; i < countEdges; i++)
+	for (int i = 0; i < countVertices; i++)
 	{
 		newGraph->matrix[i] = calloc(countVertices, sizeof(int));
+	}
+	for (int i = 0; i < countEdges; i++)
+	{
+		int first = 0;
+		int second = 0;
 		for (int j = 0; j < countVertices; j++)
 		{
-			fscanf(input, "%i", &(newGraph->matrix[i][j]));
+			if (array[j][i] == 1 && first == 0)
+			{
+				first = j;
+			}
+			else if (array[j][i] == 1 && first == 1)
+			{
+				newGraph->matrix[j][first] = 1;
+				newGraph->matrix[first][j] = 1;
+				second = j;
+			}
+		}
+		if (first == 1 && second == 0)
+		{
+			newGraph->matrix[first][first] = 1;
 		}
 	}
 	newGraph->vertices = countVertices;
@@ -80,7 +98,7 @@ Queue* bfs(Graph* graph, int start)
 	Queue* pathQueue = initQueue();
 	enqueue(queue, start);
 	bool* used = calloc(graph->vertices, sizeof(bool));
-	while (!empty(queue))
+	while (!isEmpty(queue))
 	{
 		int v = dequeue(queue);
 		if (used[v]) {
@@ -98,31 +116,5 @@ Queue* bfs(Graph* graph, int start)
 	}
 	free(used);
 	deleteQueue(&queue);
-	return pathQueue;
-}
-
-void dfsRecursive(Graph* graph, int current, bool *used, Queue *pathQueue)
-{
-	int v = current;
-	if (used[v]) {
-		return;
-	}
-	used[v] = true;
-	enqueue(pathQueue, v);
-	for (int j = 0; j < graph->vertices; j++)
-	{
-		if (graph->matrix[v][j] == 1 && !used[j])
-		{
-			dfsRecursive(graph, j, used, pathQueue);
-		}
-	}
-}
-
-Queue* dfs(Graph* graph, int start)
-{
-	bool* used = calloc(graph->vertices, sizeof(bool));
-	Queue* pathQueue = initQueue();
-	dfsRecursive(graph, start, used, pathQueue);
-	free(used);
 	return pathQueue;
 }
