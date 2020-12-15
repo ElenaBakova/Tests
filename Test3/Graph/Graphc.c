@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include "Queue.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Graph {
 	int **matrix;
