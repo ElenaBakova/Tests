@@ -1,5 +1,6 @@
 #include "Queue.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 typedef struct QueueElement 
@@ -74,7 +75,7 @@ Queue* initQueue(void)
 	{
 		return NULL;
 	}
-	/*queue->head = calloc(1, sizeof(QueueElement));
-	queue->tail = calloc(1, sizeof(QueueElement));*/
+	queue->head = NULL;
+	queue->tail = NULL;
 	return queue;
 }
