@@ -140,12 +140,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Date.c" />
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
     <Text Include="test1.txt" />
     <Text Include="test2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Date.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
