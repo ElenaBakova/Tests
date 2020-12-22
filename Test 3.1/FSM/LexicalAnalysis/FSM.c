@@ -79,9 +79,10 @@ bool isRealNumber(char* string)
 			}
 			return false;
 		case thirdDigit:
-			if (token >= 'A' && token <= 'Z')
+			if (token == '.')
 			{
 				state = point;
+				break;
 			}
 			if (token == '\0' || token == '\n')
 			{
