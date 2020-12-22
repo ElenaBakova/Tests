@@ -118,7 +118,10 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsC</CompileAs>
+<<<<<<< HEAD:Test3/Problem1/Sorted list.vcxproj
       <DisableSpecificWarnings>6031; 4996</DisableSpecificWarnings>
+=======
+>>>>>>> problem3:Test3/Graph/Project2.vcxproj
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
