@@ -13,7 +13,12 @@ enum States {
 
 bool isFirstGroup(char sign)
 {
+	return (sign >= 'A' && sign <= 'Z' || isdigit(sign) || sign == '.' || sign == '_' || sign == '%' || sign == '+' || sign == '-');
+}
 
+bool isSecondGroup(char sign)
+{
+	return (sign >= 'A' && sign <= 'Z' || isdigit(sign) || sign == '-');
 }
 
 bool isRealNumber(char* string)
@@ -26,79 +31,59 @@ bool isRealNumber(char* string)
 		switch (state)
 		{
 		case start:
-			if (isdigit(token))
+			if (isFirstGroup(token))
 			{
 				state = firstGroup;
 				break;
 			}
 			return false;
 		case firstGroup:
-			if (isdigit(token))
+			if (isFirstGroup(token))
 			{
 				break;
 			}
-			if (token == '.')
+			if (token == '@')
 			{
 				state = atSign;
 				break;
 			}
-			else if (token == 'E')
-			{
-				state = point;
-				break;
-			}
-			else if (token == '\0' || token == '\n')
-			{
-				return true;
-			}
 			return false;
 		case atSign:
-			if (isdigit(token))
+			if (isSecondGroup(token))
 			{
 				state = secondGroup;
 				break;
 			}
 			return false;
 		case secondGroup:
-			if (isdigit(token))
+			if (isSecondGroup(token))
 			{
 				break;
 			}
-			else if (token == '\0' || token == '\n')
-			{
-				return true;
-			}
-			if (token == 'E')
+			if (token == '.')
 			{
 				state = point;
 				break;
 			}
 			return false;
 		case point:
-			if (isdigit(token))
+			if (token >= 'A' && token <= 'Z')
 			{
 				state = thirdDigit;
 				break;
 			}
-			if (token == '-' || token == '+')
+			if (isSecondGroup(token))
 			{
-				state = sign;
-				break;
-			}
-			return false;
-		case sign:
-			if (isdigit(token))
-			{
-				state = thirdDigit;
+				state = secondGroup;
 				break;
 			}
 			return false;
 		case thirdDigit:
-			if (isdigit(token))
+			if (token >= 'A' && token <= 'Z')
 			{
-				break;
+				state = point;
 			}
-			else if (token == '\0' || token == '\n')
+			if (token == '\0' || token == '\n')
 			{
 				return true;
 			}
