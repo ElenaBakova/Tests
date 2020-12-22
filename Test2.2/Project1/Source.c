@@ -20,15 +20,15 @@ void assignDate(Date* destination, Date* source)
 	destination->day = source->day;
 }
 
-int main()
+Date* getMaximumDate(char* filename)
 {
-	FILE* input = fopen("input.txt", "r");
+	FILE* input = fopen(filename, "r");
 	if (input == NULL)
 	{
-		return 1;
+		return NULL;
 	}
-	Date *answerDate = calloc(1, sizeof(Date));
-	Date *date = calloc(1, sizeof(Date));
+	Date* answerDate = calloc(1, sizeof(Date));
+	Date* date = calloc(1, sizeof(Date));
 	while (!feof(input))
 	{
 		fscanf(input, "%d%*c%d%*c%d", &date->day, &date->month, &date->year);
@@ -37,12 +37,40 @@ int main()
 			assignDate(answerDate, date);
 		}
 	}
-	printf("Maximum date: %d.%d.%d", answerDate->day, answerDate->month, answerDate->year);
-
-	free(answerDate);
-	answerDate = NULL;
 	free(date);
 	date = NULL;
 	fclose(input);
+	return answerDate;
+}
+
+bool test()
+{
+	Date* answer = getMaximumDate("test1.txt");
+	bool result = answer->day == 1;
+	result &= answer->month == 8;
+	result &= answer->year == 2001;
+	answer = getMaximumDate("test2.txt");
+	result &= answer->day == 9;
+	result &= answer->month == 11;
+	result &= answer->year == 2009;
+
+	free(answer);
+	answer = NULL;
+	return result;
+}
+
+int main()
+{
+	if (!test())
+	{
+		printf("Test failed");
+		return 1;
+	}
+	printf("Test succeed\n");
+	Date* answer = getMaximumDate("input.txt");
+	printf("Maximum date: %0.2d.%0.2d.%0.4d", answer->day, answer->month, answer->year);
+
+	free(answer);
+	answer = NULL;
 	return 0;
 }
