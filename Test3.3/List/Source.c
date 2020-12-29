@@ -11,11 +11,10 @@ List* turnList(List* list)
 	{
 		addItem(newList, getValue(position));
 	}
-	freeList(&list);
 	return newList;
 }
 
-List* fillList(List** list, int right, int left, int size)
+void fillList(List** list, int left, int right, int size)
 {
 	if (*list != NULL)
 	{
@@ -26,7 +25,6 @@ List* fillList(List** list, int right, int left, int size)
 	{
 		addItem(*list, rand() % (right - left) + left);
 	}
-	return *list;
 }
 
 bool commandProcessing(const int code, List **list)
@@ -34,6 +32,7 @@ bool commandProcessing(const int code, List **list)
 	int size = 0;
 	int left = 0;
 	int right = 0;
+	List* oldList = NULL;
 	switch (code)
 	{
 	case 0:
@@ -47,10 +46,12 @@ bool commandProcessing(const int code, List **list)
 			printf("Ivalid range\n");
 			break;
 		}
-		*list = fillList(list, right, left, size);
+		fillList(list, left, right, size);
 		break;
 	case 2:
+		oldList = *list;
 		*list = turnList(*list);
+		freeList(&oldList);
 		break;
 	case 3:
 		printList(*list);
@@ -62,6 +63,25 @@ bool commandProcessing(const int code, List **list)
 	return false;
 }
 
+bool tests()
+{
+	List* firstList = NULL;
+	fillList(&firstList, 1, 10, 10);
+	List* secondList = turnList(firstList);
+	Position firstPointer = getFirst(firstList);
+	Position secondPointer = getLast(secondList);
+	bool result = true;
+	while (!isEnd(firstPointer) && !isEnd(secondPointer))
+	{
+		result &= getValue(firstPointer) == getValue(secondPointer);
+		firstPointer = nextItem(firstPointer);
+		secondPointer = previousItem(secondPointer);
+	}
+	freeList(&firstList);
+	freeList(&secondList);
+	return result;
+}
+
 int main()
 {
 	if (!listTests())
@@ -70,6 +90,12 @@ int main()
 		return 1;
 	}
 	printf("List tests succeed\n");
+	if (!tests())
+	{
+		printf("Tests failed");
+		return 1;
+	}
+	printf("Tests succeed\n");
 	
 	srand(time(NULL));
 	printf("Commands:\n");
