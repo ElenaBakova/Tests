@@ -71,12 +71,14 @@ bool tests()
 	Position firstPointer = getFirst(firstList);
 	Position secondPointer = getLast(secondList);
 	bool result = true;
+
 	while (!isEnd(firstPointer) && !isEnd(secondPointer))
 	{
 		result &= getValue(firstPointer) == getValue(secondPointer);
 		firstPointer = nextItem(firstPointer);
 		secondPointer = previousItem(secondPointer);
 	}
+
 	freeList(&firstList);
 	freeList(&secondList);
 	return result;

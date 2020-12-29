@@ -68,7 +68,7 @@ void addItem(List* list, const int value)
 	{
 		return;
 	}
-	ListElement* newElement = malloc(sizeof(ListElement));
+	ListElement* newElement = calloc(1, sizeof(ListElement));
 	if (newElement == NULL)
 	{
 		return;
