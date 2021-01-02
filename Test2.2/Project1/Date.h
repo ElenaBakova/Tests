@@ -8,7 +8,7 @@ typedef struct Date {
 } Date;
 
 // Returns true if first date greater than second
-bool compareDate(Date* first, Date* second);
+bool isGreaterDate(Date* first, Date* second);
 
 // Assigns source to the destination
 void assignDate(Date* destination, Date* source);

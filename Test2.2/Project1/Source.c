@@ -9,6 +9,7 @@ bool test()
 	bool result = answer->day == 1;
 	result &= answer->month == 8;
 	result &= answer->year == 2001;
+	free(answer);
 	answer = getMaximumDate("test2.txt");
 	result &= answer->day == 9;
 	result &= answer->month == 11;

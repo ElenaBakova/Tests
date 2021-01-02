@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-bool compareDate(Date* first, Date* second)
+bool isGreaterDate(Date* first, Date* second)
 {
-	return first->year > second->year || first->year == second->year && first->month > second->month || first->year == second->year && first->month == second->month && first->day > second->day;
+	bool result = first->year > second->year || first->year == second->year && first->month > second->month;
+	result |= first->year == second->year && first->month == second->month && first->day > second->day;
+	return result;
 }
 
 void assignDate(Date* destination, Date* source)
@@ -38,7 +40,7 @@ Date* getMaximumDate(char* filename)
 	while (!feof(input))
 	{
 		fscanf(input, "%d%*c%d%*c%d", &date->day, &date->month, &date->year);
-		if (compareDate(date, answerDate))
+		if (isGreaterDate(date, answerDate))
 		{
 			assignDate(answerDate, date);
 		}
