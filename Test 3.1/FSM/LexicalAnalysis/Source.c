@@ -23,7 +23,7 @@ bool tests()
 		int answer = 0;
 		fgets(string, 1000, test);
 		fscanf(answers, "%i", &answer);
-		result &= isRealNumber(string) == answer;
+		result &= isValid(string) == answer;
 	}
 
 	fclose(test);
@@ -43,7 +43,7 @@ int main()
 	printf("Please enter an expression: ");
 	char string[10000] = "";
 	gets_s(string, 10000);
-	if (isRealNumber(string))
+	if (isValid(string))
 	{
 		printf("OK\n");
 		return 0;

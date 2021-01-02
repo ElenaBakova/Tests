@@ -21,7 +21,7 @@ bool isSecondGroup(char sign)
 	return (sign >= 'A' && sign <= 'Z' || isdigit(sign) || sign == '-');
 }
 
-bool isRealNumber(char* string)
+bool isValid(char* string)
 {
 	enum States state = start;
 	int current = 0;
