@@ -47,7 +47,7 @@ namespace Vector
             int i = first.vector.Count - 1;
             int j = second.vector.Count - 1;
             List<(int, int)> result = new();
-            while(1 == 1)
+            while(true)
             {
                 if (first.vector[i].Item1 == first.vector[j].Item1)
                 {
