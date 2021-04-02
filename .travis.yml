@@ -5,10 +5,7 @@ dotnet: 3.1.101
 os: windows
 
 before_build:
-- nuget restore Semester2/Homework.sln
+- nuget restore Semester2\Vector\Vector.sln
 
 build:
-- dotnet build Semester2/Homework.sln
-
-test_script:
-- dotnet test Semester2/Homework.sln
+- dotnet build Semester2\Vector\Vector.sln
