@@ -4,6 +4,11 @@ mono: none
 dotnet: 3.1.101
 os: windows
 
-build_script:
-    - cd Semester2
-    - For /R %%I in (*.sln) do dotnet test %%I
+before_build:
+- nuget restore Semester2/Homework.sln
+
+build:
+- dotnet build Semester2/Homework.sln
+
+test_script:
+- dotnet test Semester2/Homework.sln
