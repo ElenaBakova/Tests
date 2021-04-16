@@ -10,7 +10,7 @@ namespace Vector
         /// <summary>
         /// Vector that contains pairs (position, value)
         /// </summary>
-        List<(int, int)> vector;
+        private List<(int, int)> vector;
 
         /// <summary>
         /// Adds to vector new value if it's not a zero
@@ -39,15 +39,12 @@ namespace Vector
             }
         }
 
-        private static int Max(int first, int second)
-            => first > second ? first : second;
-
         public static List<(int, int)> operator +(SparseVector first, SparseVector second)
         {
             int i = first.vector.Count - 1;
             int j = second.vector.Count - 1;
             List<(int, int)> result = new();
-            while(true)
+            while (true)
             {
                 if (first.vector[i].Item1 == first.vector[j].Item1)
                 {
